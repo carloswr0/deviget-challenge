@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   addEntries,
-  clearEntries,
+  fetchEntries
 } from "./redux/Entries/entries.actions";
+import Main from "./components/Main/Main";
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.fetchEntries();
+  }, []);
+
   return (
-    <div className="App"></div>
+    <div className="App"><Main /></div>
   );
 }
 
@@ -20,7 +25,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addEntries: () => dispatch(addEntries()),
-    clearEntries: () => dispatch(clearEntries()),
+    fetchEntries: () => dispatch(fetchEntries()),
   }
 }
 

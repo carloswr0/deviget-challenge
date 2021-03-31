@@ -15,3 +15,9 @@ Something that I like to do in my personal projects is do a CSS Reset (in ./src/
 ## Creating redux store
 
 Since I will be creating a React App and Redux is mandatory for this challenge for this commit I coded the boilerplate for the redux store, provider, redux devTools and the first reducer, actions and types also connected the store to <App> because that will be the most parent component, also added Redux and React-redux as dependecies.
+
+## Doing my first request
+
+So after doing the boilerplate for the redux store I began thinking about how I was going to manage requests, initially I will put it in the actions, but in following commits i will abstract into a helper function that can be customized depending on subreddit or HTTP method.
+
+I will be using redux thunk as a middleware in my actions so it can support asynchronous code.
