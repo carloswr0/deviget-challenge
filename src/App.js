@@ -12,7 +12,9 @@ function App(props) {
   }, []);
 
   return (
-    <div className="App"><Main /></div>
+    <div className="App">
+      <Main entries={props.entries} />
+    </div>
   );
 }
 

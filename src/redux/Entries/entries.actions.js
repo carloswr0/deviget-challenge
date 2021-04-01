@@ -1,4 +1,5 @@
 import { ADD_ENTRIES, CLEAR_ENTRIES } from './entries.types';
+import makeRequest from '../../helpers/makeRequest';
 
 export const addEntries = (entries) => {
   return {
@@ -14,9 +15,11 @@ export const clearEntries = () => {
 };
 
 export const fetchEntries = () => {
+  const options = {
+    method: "GET"
+  }
+  
   return dispatch => {
-    fetch(`//api.reddit.com/top.json`)
-    .then(req => req.json())
-    .then(json => dispatch(addEntries(json)));
+    makeRequest('top.json', options).then(json => dispatch(addEntries(json)));
   }
 }
