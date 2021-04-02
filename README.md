@@ -27,3 +27,10 @@ I will be using redux thunk as a middleware in my actions so it can support asyn
 Now that I have the data formatted and stored in the redux store I have prepared an unfinished draft of the component that I will use to render on the application in following commits I will break it down into different components but before that I will begin to add different actions like remove entry, clear all entries, read post and pagination (client-side).
 
 Also decided to use StyledComponents to style the components separately.
+
+## Added many new features
+
+In this commit I created new actions to manage the Reddit entries array like entriesFetchFailed, selectEntry, dismissEntry also added new fields like selectedEntry, fetched, fetchSuccess & fetchFailed to store the selected entry for the details component and different stages if the request happened to fail; show the user that it actually failed so they do not wait for an infinite loading state.
+
+Also in this commit I introduced redux-persist to persist and rehydrate the redux store if the user happened to leave the application, maybe it would be good to consider adding am "alive" timer so the next time the users comes to de app again in the future they get the newest entries instead of the old ones that they had saved.
+

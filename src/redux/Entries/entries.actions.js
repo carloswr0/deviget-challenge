@@ -1,16 +1,36 @@
-import { ADD_ENTRIES, CLEAR_ENTRIES } from './entries.types';
+import * as types from './entries.types';
 import makeRequest from '../../helpers/makeRequest';
 
 export const addEntries = (entries) => {
   return {
-    type: ADD_ENTRIES,
+    type: types.ADD_ENTRIES,
     entries,
   };
 };
 
+export const entriesFetchFailed = () => {
+  return {
+    type: types.FETCH_ENTRIES_FAILED,
+  }
+}
+
 export const clearEntries = () => {
   return {
-    type: CLEAR_ENTRIES,
+    type: types.CLEAR_ENTRIES,
+  };
+};
+
+export const selectEntry = (entry) => {
+  return {
+    type: types.SELECT_ENTRY,
+    entry
+  };
+};
+
+export const dismissEntry = (id) => {
+  return {
+    type: types.DISMISS_ENTRY,
+    id
   };
 };
 
@@ -20,6 +40,11 @@ export const fetchEntries = () => {
   }
   
   return dispatch => {
-    makeRequest('top.json', options).then(json => dispatch(addEntries(json)));
+    makeRequest('top.json', options)
+      .then(json => dispatch(addEntries(json)))
+      .catch((err) => {
+        dispatch(entriesFetchFailed())
+        console.error(err)
+      });
   }
 }
