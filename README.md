@@ -32,5 +32,10 @@ Also decided to use StyledComponents to style the components separately.
 
 In this commit I created new actions to manage the Reddit entries array like entriesFetchFailed, selectEntry, dismissEntry also added new fields like selectedEntry, fetched, fetchSuccess & fetchFailed to store the selected entry for the details component and different stages if the request happened to fail; show the user that it actually failed so they do not wait for an infinite loading state.
 
-Also in this commit I introduced redux-persist to persist and rehydrate the redux store if the user happened to leave the application, maybe it would be good to consider adding am "alive" timer so the next time the users comes to de app again in the future they get the newest entries instead of the old ones that they had saved.
+Also in this commit I introduced redux-persist to persist and rehydrate the redux store if the user happened to leave the application, maybe it would be good to consider adding an "alive" timer so the next time the users comes to de app again in the future they get the newest entries instead of the old ones that they had saved.
 
+## Timestamps and select entry feature
+
+Now we are very close to finish this challenge with one more day to spare, in this commit I added a helper function that accepts the date of the Reddit Entry and converts it into a readeable string, turns out that Reddit UTC comes in seconds instead of miliseconds so I have to adjust it from our side, also in this commit I added the feature to select a entry from the list and change it's state to read.
+
+Now that all the features are ready and working I noticed that the <Main> component is very big and would be very hard to understand, so I will be spliting it up into smaller components easy to read and to test.

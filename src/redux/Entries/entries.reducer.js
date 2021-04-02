@@ -32,11 +32,18 @@ const entriesReducer = (state = ENTRIES_INITIAL_STATE, action) => {
       return {
         ...state, entries: state.entries.filter(e => e.id !== action.id)
       };
-    
 
-    case types.SELECT_ENTRY: 
+    case types.SELECT_ENTRY:
+      const selectedEntry = {...action.entry};
+      selectedEntry.unread = false;
+      const entries = [...state.entries].map(entry => {
+        if (selectedEntry.id === entry.id) {
+          entry = {...selectedEntry};
+        }
+        return entry;
+      })
       return {
-        ...state, selectedEntry: action.entry
+        ...state, selectedEntry, entries
       };
     
     case types.CLEAR_ENTRIES:
