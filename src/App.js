@@ -7,8 +7,9 @@ import {
   clearEntries,
   selectEntry
 } from "./redux/Entries/entries.actions";
-import Main from "./components/Main/Main";
-import Details from "./components/Main/Details/Details";
+import Dashboard from "./components/Dashboard/Dashboard";
+import List from "./components/List/List";
+import Details from "./components/Details/Details";
 
 function App(props) {
   useEffect(() => {
@@ -18,12 +19,15 @@ function App(props) {
     if (noEntries) {
       fetchEntries();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="App">
-      <Main {...props} />
-      <Details {...props} />
+      <Dashboard>
+        <List {...props} />
+        <Details {...props} />
+      </Dashboard>
     </div>
   );
 }

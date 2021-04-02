@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
+export const StyledList = styled.div`
   margin: 50px;
+  flex: 1;
 `

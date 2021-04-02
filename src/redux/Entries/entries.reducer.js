@@ -28,9 +28,13 @@ const entriesReducer = (state = ENTRIES_INITIAL_STATE, action) => {
         fetchFailed: true,
       };
     
-    case types.DISMISS_ENTRY: 
+    case types.DISMISS_ENTRY:
+      let copySelectedEntry = {...state.selectedEntry};
+      if (copySelectedEntry.id === action.id) {
+        copySelectedEntry = {};
+      }
       return {
-        ...state, entries: state.entries.filter(e => e.id !== action.id)
+        ...state, entries: state.entries.filter(e => e.id !== action.id), selectedEntry: copySelectedEntry,
       };
 
     case types.SELECT_ENTRY:

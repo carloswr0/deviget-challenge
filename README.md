@@ -39,3 +39,7 @@ Also in this commit I introduced redux-persist to persist and rehydrate the redu
 Now we are very close to finish this challenge with one more day to spare, in this commit I added a helper function that accepts the date of the Reddit Entry and converts it into a readeable string, turns out that Reddit UTC comes in seconds instead of miliseconds so I have to adjust it from our side, also in this commit I added the feature to select a entry from the list and change it's state to read.
 
 Now that all the features are ready and working I noticed that the <Main> component is very big and would be very hard to understand, so I will be spliting it up into smaller components easy to read and to test.
+
+## Splitting up Main component
+
+The <Main> component was getting to big and held to much responsabilities, now it is named <List> and was splitted into smallers components like <Entry>, <EntryBody>, <EntryFooter>, <EntryHeader>, <ErrorMessage>, <Loading> & <Pagination>, some of them can be reutilized and some were created to increase the readability of the aplication. I am still debating whether Pagination should have been store in the redux store instead of <List>'s State since only that component is going to use that logic but for simplicity I will leave it there. 
