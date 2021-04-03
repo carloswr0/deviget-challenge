@@ -49,7 +49,12 @@ const entriesReducer = (state = ENTRIES_INITIAL_STATE, action) => {
       return {
         ...state, selectedEntry, entries
       };
-    
+
+    case types.UNSELECT_ENTRY:
+      return {
+        ...state, selectedEntry: {},
+      };
+
     case types.CLEAR_ENTRIES:
       return {
         ...state, entries: [],

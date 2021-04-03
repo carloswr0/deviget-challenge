@@ -5,8 +5,10 @@ import {
 } from "../redux/Entries/entries.actions";
 
 const StyledEntry = styled.div`
-    border: 1px solid blue;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: 5px 5px 0px #0000002e;
 `;
 
 const Entry = (props) => {
@@ -17,16 +19,14 @@ const Entry = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-    return {
-      entriesState: state.entriesState,
-    }
+const mapStateToProps = () => {
+  return {}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    selectEntry: (entry) => dispatch(selectEntry(entry)),
   }
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-      selectEntry: (entry) => dispatch(selectEntry(entry)),
-    }
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Entry)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Entry)

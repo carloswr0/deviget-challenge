@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-  addEntries,
   fetchEntries,
-  dismissEntry,
-  clearEntries,
-  selectEntry
 } from "./redux/Entries/entries.actions";
 import Dashboard from "./components/Dashboard/Dashboard";
 import List from "./components/List/List";
@@ -25,8 +21,8 @@ function App(props) {
   return (
     <div className="App">
       <Dashboard>
-        <List {...props} />
-        <Details {...props} />
+        <List />
+        <Details />
       </Dashboard>
     </div>
   );
@@ -40,11 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addEntries: () => dispatch(addEntries()),
-    dismissEntry: (id) => dispatch(dismissEntry(id)),
     fetchEntries: () => dispatch(fetchEntries()),
-    clearEntries: () => dispatch(clearEntries()),
-    selectEntry: (entry) => dispatch(selectEntry(entry))
   }
 }
 

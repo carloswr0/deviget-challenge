@@ -1,4 +1,5 @@
 import { StyledList } from './StyledList';
+import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Entry from '../Entry';
 import EntryHeader from '../EntryHeader';
@@ -7,9 +8,11 @@ import EntryFooter from '../EntryFooter';
 import Pagination from '../Pagination';
 import Loading from '../Loading';
 import ErrorMessage from '../ErrorMessage';
+import ClearEntries from '../ClearEntries';
+import isObjEmpty from '../../helpers/isObjEmpty';
 
-const List = ({entriesState, clearEntries}) => {
-  const { entries, fetched, fetchSuccess, fetchFailed } = entriesState;
+const List = ({entriesState}) => {
+  const { entries, fetched, fetchSuccess, fetchFailed, selectedEntry } = entriesState;
   const [pageNumber, setPageNumber] = useState(1);
   const [entriesPerPage] = useState(10);
   const currentPageNumber = (pageNumber * entriesPerPage) - entriesPerPage; 
@@ -21,7 +24,7 @@ const List = ({entriesState, clearEntries}) => {
   const dateNowInMs = Date.now();
   const handlePrev = () => shouldHavePrev && setPageNumber(pageNumber - 1);
   const handleNext = () => shouldHaveNext && setPageNumber(pageNumber + 1);
-  
+
   const paginationProps = {
     shouldHavePrev,
     shouldHaveNext,
@@ -39,11 +42,10 @@ const List = ({entriesState, clearEntries}) => {
   }, [paginatedEntries]);
 
   return (
-    <StyledList>
+    <StyledList selectedEntry={isObjEmpty(selectedEntry)}>
       {hasntFetched && <Loading />}
       {fetchFailed && <ErrorMessage>Error: We could'nt get any information, please try again!</ErrorMessage>}
       {!entriesAvailable && fetchSuccess && <ErrorMessage>There are no more entries to show.</ErrorMessage>}
-      {entriesAvailable && <span onClick={() => clearEntries()}>Clear all the entries</span>}
       {paginatedEntries.map(entry => {
         return (
           <Entry key={entry.id} entry={entry}>
@@ -53,10 +55,21 @@ const List = ({entriesState, clearEntries}) => {
           </Entry>
         )
       })
-      }
-      {entriesAvailable && <Pagination {...paginationProps} />}
+    }
+    {entriesAvailable && <Pagination {...paginationProps} />}
+    {entriesAvailable && <ClearEntries>Clear all the entries</ClearEntries>}
     </StyledList>
   )
 }
 
-export default List
+const mapStateToProps = state => {
+  return {
+    entriesState: state.entriesState,
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)

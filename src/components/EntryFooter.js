@@ -5,20 +5,53 @@ import {
 } from "../redux/Entries/entries.actions";
 
 const StyledEntryFooter = styled.div`
-  border: 1px solid orange;
+  display: flex;
+  padding: 10px; 
+  & > * {
+    margin-right: 10px;
+    padding: 5px 15px;
+  }
+  @media only screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
+
+const Bold = styled.b`
+  font-weight: bold;
+  font-size: 1.2rem;
+`
+
+const Unread = styled.p`
+  font-weight: bold;
+  font-size: 1.2rem;
+`;
+
+const Dismiss = styled.button`
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #0000001f;
+    border-radius: 10px;
+    transition: 0.1s ease-out;
+  }
+`
 
 const EntryFooter = ({entry, dismissEntry}) => {
   return (
     <StyledEntryFooter>
-      <p>Comments: {entry.comments}</p>
-      {entry.unread && <p>Unread</p>}
-      <div onClick={(e) => {
+      <Bold>💬 {entry.comments} Comments</Bold>
+      {entry.unread && <Unread>👁‍🗨 Unread</Unread>}
+      <Dismiss onClick={(e) => {
         e.stopPropagation();
         dismissEntry(entry.id)
       }}>
-        Dismiss
-      </div>
+        ❌ Dismiss
+      </Dismiss>
     </StyledEntryFooter>
   );
 };

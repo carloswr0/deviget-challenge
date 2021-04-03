@@ -27,6 +27,13 @@ export const selectEntry = (entry) => {
   };
 };
 
+export const unselectEntry = () => {
+  return {
+    type: types.UNSELECT_ENTRY,
+  };
+};
+
+
 export const dismissEntry = (id) => {
   return {
     type: types.DISMISS_ENTRY,

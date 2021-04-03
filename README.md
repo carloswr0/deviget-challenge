@@ -43,3 +43,7 @@ Now that all the features are ready and working I noticed that the <Main> compon
 ## Splitting up Main component
 
 The <Main> component was getting to big and held to much responsabilities, now it is named <List> and was splitted into smallers components like <Entry>, <EntryBody>, <EntryFooter>, <EntryHeader>, <ErrorMessage>, <Loading> & <Pagination>, some of them can be reutilized and some were created to increase the readability of the aplication. I am still debating whether Pagination should have been store in the redux store instead of <List>'s State since only that component is going to use that logic but for simplicity I will leave it there. 
+
+## Applying style
+
+Now that we have a lot of small components that are easy to read and understand I procceed with giving them encapsulated styling to each, at this moment I was very exhausted and did not focused on reusing repeated styling and I dont with I will have enough time to clean up and optimize the styling since I have to start coding the unit testing.
